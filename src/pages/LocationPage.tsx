@@ -44,7 +44,7 @@ const LocationPage: React.FC = () => {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="relative rounded-xl overflow-hidden shadow-lg max-w-4xl mx-auto mb-4 bg-muted/20">
             <iframe
-              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D9%87+%D8%A7%D9%84%D8%B7%D8%A8%D9%8A%D9%87+%D9%83%D8%A7%D8%A8%D9%8A%D8%AA%D8%A7%D9%84+%D9%85%D9%8A%D8%AF,Badr,Cairo&zoom=14&maptype=roadmap"
+              src="https://www.google.com/maps?q=30.10753823911962,31.753867557671754&z=15&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0, minHeight: '350px' }}
@@ -73,8 +73,8 @@ const LocationPage: React.FC = () => {
             </div>
           </div>
           <div className="flex justify-center gap-4 mb-16">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=4Q43%2BXG9%2C+%D8%B7%D8%B1%D9%8A%D9%82%2C+Badr%2C+Cairo+Governorate+4956010" target="_blank" rel="noopener noreferrer"><Button size="lg" className="rounded-[8px]"><MapPin className="w-4 h-4 mr-2" />{t('location.directions')}</Button></a>
-            <a href="https://www.google.com/maps?q=4Q43%2BXG9%2C+%D8%B7%D8%B1%D9%8A%D9%82%2C+Badr%2C+Cairo+Governorate+4956010&t=k" target="_blank" rel="noopener noreferrer"><Button size="lg" variant="outline" className="rounded-[8px]">{t('location.satellite')}</Button></a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=30.10753823911962,31.753867557671754" target="_blank" rel="noopener noreferrer"><Button size="lg" className="rounded-[8px]"><MapPin className="w-4 h-4 mr-2" />{t('location.directions')}</Button></a>
+            <a href="https://www.google.com/maps?q=30.10753823911962,31.753867557671754&t=k" target="_blank" rel="noopener noreferrer"><Button size="lg" variant="outline" className="rounded-[8px]">{t('location.satellite')}</Button></a>
           </div>
           <div className="grid md:grid-cols-2 gap-5 max-w-2xl mx-auto mb-20">
             <motion.div initial={{ opacity: 0, x: -15 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="premium-card p-6">

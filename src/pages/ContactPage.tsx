@@ -109,7 +109,7 @@ const ContactPage: React.FC = () => {
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
               className="rounded-xl overflow-hidden min-h-[400px]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55251.37709424156!2d31.655566!3d30.0131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583d5f2e7b3f9d%3A0x2dc7a7c7c3c3c3c3!2sNew%20Administrative%20Capital!5e0!3m2!1sen!2seg!4v1234567890"
+                src="https://www.google.com/maps?q=30.10753823911962,31.753867557671754&z=15&output=embed"
                 width="100%" height="100%" style={{ border: 0, minHeight: '400px' }} allowFullScreen loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade" title="CapitalMed Location"
               />

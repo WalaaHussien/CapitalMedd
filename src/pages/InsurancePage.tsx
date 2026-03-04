@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { CreditCard, Smartphone, Building, Banknote } from 'lucide-react';
+import { CreditCard, Smartphone, Building, Banknote, Search, ShieldCheck } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -12,6 +12,27 @@ const fadeUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, tra
 
 const InsurancePage: React.FC = () => {
   const { t } = useLanguage();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const insurancePartners = [
+    { id: 1, name: 'AXA', icon: ShieldCheck },
+    { id: 2, name: 'Bupa', icon: ShieldCheck },
+    { id: 3, name: 'MetLife', icon: ShieldCheck },
+    { id: 4, name: 'Allianz', icon: ShieldCheck },
+    { id: 5, name: 'Cigna', icon: ShieldCheck },
+    { id: 6, name: 'GlobeMed', icon: ShieldCheck },
+    { id: 7, name: 'Nextcare', icon: ShieldCheck },
+    { id: 8, name: 'Prime Health', icon: ShieldCheck },
+    { id: 9, name: 'UniCare', icon: ShieldCheck },
+    { id: 10, name: 'Medicare', icon: ShieldCheck },
+    { id: 11, name: 'Misr Insurance', icon: ShieldCheck },
+    { id: 12, name: 'GIG', icon: ShieldCheck },
+  ];
+
+  const filteredPartners = insurancePartners.filter(partner =>
+    partner.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const billingSteps = [
     { step: 1, title: t('insurance.step1.title'), desc: t('insurance.step1.desc') },
     { step: 2, title: t('insurance.step2.title'), desc: t('insurance.step2.desc') },
@@ -49,11 +70,43 @@ const InsurancePage: React.FC = () => {
             className="premium-card p-8 max-w-xl mx-auto mb-20">
             <h2 className="text-xl font-bold mb-2">{t('insurance.search.title')}</h2>
             <p className="text-muted-foreground text-sm mb-5">{t('insurance.search.subtitle')}</p>
-            <div className="flex gap-3">
-              <Input placeholder={t('insurance.search.placeholder')} className="rounded-[6px]" />
+            <div className="flex gap-3 mb-6 relative">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                <Input
+                  placeholder={t('insurance.search.placeholder')}
+                  className="pl-9 rounded-[6px]"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
               <Button className="rounded-[8px]">{t('common.search')}</Button>
             </div>
-            <p className="text-xs text-muted-foreground mt-3">{t('insurance.search.popular')}</p>
+
+            {searchQuery ? (
+              <div className="bg-background border rounded-lg overflow-hidden shadow-sm animate-in fade-in zoom-in-95 duration-200 text-left">
+                {filteredPartners.length > 0 ? (
+                  <div className="max-h-[300px] overflow-y-auto divide-y scrollbar-thin scrollbar-thumb-muted-foreground/20">
+                    {filteredPartners.map(partner => (
+                      <div key={partner.id} className="flex items-center gap-3 p-3 hover:bg-muted/50 transition-colors cursor-pointer group">
+                        <div className="w-8 h-8 rounded-full bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center text-primary shrink-0 transition-colors">
+                          <partner.icon className="w-4 h-4" />
+                        </div>
+                        <span className="font-medium text-sm">{partner.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="p-8 text-center text-muted-foreground">
+                    <Search className="w-8 h-8 mx-auto mb-2 opacity-20" />
+                    <p className="text-sm font-medium">No results found</p>
+                    <p className="text-xs text-muted-foreground mt-1">Try searching for AXA, Bupa, Allianz...</p>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <p className="text-xs text-muted-foreground mt-3">{t('insurance.search.popular')}</p>
+            )}
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
